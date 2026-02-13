@@ -1,0 +1,18 @@
+# Env Variables
+*.env
+
+# Keys and Certs
+*.pem
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Databases
+*.db
+*.sqlite3
+
+# VsCode
+.vscode/
