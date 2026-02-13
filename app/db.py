@@ -17,3 +17,6 @@ def init_db():
     from app.models import user
 
     SQLModel.metadata.create_all(engine)
+
+# For testing purposes, we can create an in-memory SQLite database engine
+test_engine = create_engine("sqlite:///:memory:", echo=False, connect_args={"check_same_thread": False})
