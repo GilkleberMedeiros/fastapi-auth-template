@@ -1,5 +1,5 @@
 from unittest import TestCase
-from httpx import patch
+from unittest.mock import patch
 from sqlmodel import Session
 from sqlalchemy import inspect
 
@@ -8,7 +8,6 @@ from app.db import get_session, init_db
 
 
 class TestGetSession(TestWithInMemoryDB):
-    
     def test_donot_returns_none(self):
         session = next(get_session())
         self.assertIsNotNone(session)
@@ -17,9 +16,9 @@ class TestGetSession(TestWithInMemoryDB):
         session = next(get_session())
         self.assertIsInstance(session, Session)
 
+
 @patch("app.db.engine", test_engine)
 class TestInitDB(TestCase):
-
     def test_donot_raises_exception(self):
         try:
             init_db()
@@ -29,12 +28,6 @@ class TestInitDB(TestCase):
     def test_create_user_table(self):
         init_db()
 
-        inspector = inspect(self.engine)
+        inspector = inspect(test_engine)
         tables = inspector.get_table_names()
         self.assertIn("user", tables)
-
-
-    
-
-
-    
