@@ -50,9 +50,9 @@ def get_user(id: str = "", username: str = "") -> User:
     statement = select(User)
 
     if id:
-        statement.where(User.id == id)
+        statement = statement.where(User.id == id)
     elif username:
-        statement.where(User.username == username)
+        statement = statement.where(User.username == username)
     else:
         raise Exception("This function should receive an id or username!")
     
